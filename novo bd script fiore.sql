@@ -1,26 +1,28 @@
 CREATE DATABASE FioreMove;
 
+
 USE FioreMove;
 
 CREATE TABLE Empresas (
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeFant VARCHAR (45),
 nomeEmpresa VARCHAR (45),
+senha varchar(45),
 CPNJ VARCHAR (45),
 CEP VARCHAR (45)
 ) auto_increment = 1;
 
 INSERT INTO Empresas VALUES
-	(null, 'Rita e Jaq', 'Rita e Jaqueline Flores Delivery Ltda', '57.555.243/0001-03', '02256-060'),
-    (null, 'Sophies', 'Sophia e Felipe Eletrônica Ltda','75.227.231/0001-31', '04039-010'),
-    (null, 'Caio Flores', 'Caio e Raul Corretores Associados ME','68.798.955/0001-70', '14808-631'),
-    (null, 'Rosalia Floricultura', 'Flávia e Samuel Floricultura Ltda','20.883.549/0001-89', '17204-562'),
-    (null, 'Fab', 'Fábio e Caio Flores Ltda', '89.563.658/0001-15', '13902-094'),
-    (null, 'Regina flores', 'Regina e Antonella Limpeza Ltda', '97.618.603/0001-93', '13179-384'),
-    (null, 'Nicole', 'Nicole e Nathan Florinda ME', '42.391.363/0001-45', '09332-030'),
-    (null, 'Dona Florinda', 'Yago e Mariana Flores ME', '47.984.280/0001-83', '09812-610'),
-    (null, 'Hadassa Festas', 'Hadassa e Larissa Marketing Ltda', '40.675.601/0001-19', '13432-572'),
-    (null, 'Flores Floridas', 'Adriana Florista Ltda', '69.219.716/0001-80', '13058-166');
+	(null, 'Rita e Jaq', 'Rita e Jaqueline Flores Delivery Ltda','11111', '57.555.243/0001-03', '02256-060'),
+    (null, 'Sophies', 'Sophia e Felipe Eletrônica Ltda','22222','75.227.231/0001-31', '04039-010'),
+    (null, 'Caio Flores', 'Caio e Raul Corretores Associados ME','33333','68.798.955/0001-70', '14808-631'),
+    (null, 'Rosalia Floricultura', 'Flávia e Samuel Floricultura Ltda','44444','20.883.549/0001-89', '17204-562'),
+    (null, 'Fab', 'Fábio e Caio Flores Ltda','55555', '89.563.658/0001-15', '13902-094'),
+    (null, 'Regina flores', 'Regina e Antonella Limpeza Ltda','66666', '97.618.603/0001-93', '13179-384'),
+    (null, 'Nicole', 'Nicole e Nathan Florinda ME','77777', '42.391.363/0001-45', '09332-030'),
+    (null, 'Dona Florinda', 'Yago e Mariana Flores ME','88888', '47.984.280/0001-83', '09812-610'),
+    (null, 'Hadassa Festas', 'Hadassa e Larissa Marketing Ltda','99999', '40.675.601/0001-19', '13432-572'),
+    (null, 'Flores Floridas', 'Adriana Florista Ltda','00000', '69.219.716/0001-80', '13058-166');
 
 CREATE TABLE Representante (
 idRepresentante INT PRIMARY KEY auto_increment,
@@ -88,25 +90,35 @@ INSERT INTO Sensor VALUES
 
 
 CREATE TABLE statusSENSORS (
-fkSensor int, constraint fkSensorStatus foreign key (skSensor) references sensor(idSensor),
+fkSensor int, constraint fkSensorStatus foreign key (fkSensor) references sensor(idSensor),
  constraint pkcomposta primary key (dtHoraStatus,fkSensor),
 dtHoraStatus datetime,
 statusSensor varchar (45),
-temperatura VARCHAR (45),
-umidade VARCHAR (45)
+temperatura varchar (45),
+umidade varchar (45)
 );
 
 INSERT INTO statusSENSORS VALUES
-    (null, 'Adequado', '5°C','94%', 1000),
-    (null, 'Inadequado', '6°C','60%', 1001),
-    (null, 'Adequado', '1°C','94%', 1002),
-    (null, 'Inadequado', '10°C','94%', 1003),
-    (null, 'Inadequado', '9°C','30%', 1004),
-    (null, 'Adequado', '2°C','95%', 1005),
-    (null, 'Adequado', '6°C','99%', 1006),
-    (null, 'Inadequado', '11°C','94%', 1007),
-    (null, 'Adequado', '4°C','94%', 1008),
-    (null, 'Adequado', '3°C','95%', 1009);
+    (1000, '2023-02-01 09:00:00','adequado', '1°C', '71%'), 
+    (1000, '2023-02-01 10:00:00','adequado', '2°C', '73%'), 
+    (1001, '2023-02-02 10:00:00','inadequado', '-3°C', '79%'), 
+    (1001, '2023-02-02 11:00:00','inadequado', '-2°C', '80%'), 
+    (1002, '2023-02-03 11:00:00','adequado', '1°C', '75%'), 
+    (1002, '2023-02-03 12:00:00','inadequado', '-3°C', '75%'), 
+    (1003, '2023-02-04 12:00:00','adequado', '3°C', '73%'), 
+    (1003, '2023-02-04 13:00:00','adequado', '2°C', '71%'), 
+    (1004, '2023-02-05 13:00:00','adequado', '4°C', '73%'), 
+    (1004, '2023-02-05 14:00:00','inadequado', '10°C', '73%'), 
+    (1005, '2023-02-06 14:00:00','inadequado', '10°C', '72%'), 
+    (1005, '2023-02-06 15:00:00','adequado', '4°C', '71%'), 
+    (1006, '2023-02-07 15:00:00','inadequado', '15°C', '80%'), 
+    (1006, '2023-02-07 16:00:00','adequado', '3°C', '71%'), 
+    (1007, '2023-02-08 16:00:00','inadequado', '8°C', '70%'), 
+    (1007, '2023-02-08 17:00:00','adequado', '4°C', '70%'), 
+    (1008, '2023-02-09 17:00:00','adequado', '5°C', '75%'), 
+    (1008, '2023-02-09 18:00:00','adequado', '5°C', '73%'), 
+    (1009, '2023-02-10 19:00:00','adequado', '2°C', '71%'), 
+    (1009, '2023-02-10 20:00:00','inadequado', '-3°C', '60%'); 
 
 
 SELECT * FROM Empresas;
