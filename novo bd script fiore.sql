@@ -7,22 +7,23 @@ CREATE TABLE Empresas (
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeFant VARCHAR (45),
 nomeEmpresa VARCHAR (45),
+email VARCHAR (45),	
 senha varchar(45),
 CPNJ VARCHAR (45),
 CEP VARCHAR (45)
 ) auto_increment = 1;
 
 INSERT INTO Empresas VALUES
-	(null, 'Rita e Jaq', 'Rita e Jaqueline Flores Delivery Ltda','11111', '57.555.243/0001-03', '02256-060'),
-    (null, 'Sophies', 'Sophia e Felipe Eletrônica Ltda','22222','75.227.231/0001-31', '04039-010'),
-    (null, 'Caio Flores', 'Caio e Raul Corretores Associados ME','33333','68.798.955/0001-70', '14808-631'),
-    (null, 'Rosalia Floricultura', 'Flávia e Samuel Floricultura Ltda','44444','20.883.549/0001-89', '17204-562'),
-    (null, 'Fab', 'Fábio e Caio Flores Ltda','55555', '89.563.658/0001-15', '13902-094'),
-    (null, 'Regina flores', 'Regina e Antonella Limpeza Ltda','66666', '97.618.603/0001-93', '13179-384'),
-    (null, 'Nicole', 'Nicole e Nathan Florinda ME','77777', '42.391.363/0001-45', '09332-030'),
-    (null, 'Dona Florinda', 'Yago e Mariana Flores ME','88888', '47.984.280/0001-83', '09812-610'),
-    (null, 'Hadassa Festas', 'Hadassa e Larissa Marketing Ltda','99999', '40.675.601/0001-19', '13432-572'),
-    (null, 'Flores Floridas', 'Adriana Florista Ltda','00000', '69.219.716/0001-80', '13058-166');
+	(null, 'Rita e Jaq', 'Rita e Jaqueline Flores Delivery Ltda','ritaejaq@gmail.com','11111', '57.555.243/0001-03', '02256-060'),
+    (null, 'Sophies', 'Sophia e Felipe Eletrônica Ltda','sophies@gmail.com','22222','75.227.231/0001-31', '04039-010'),
+    (null, 'Caio Flores', 'Caio e Raul Corretores Associados ME','caioflores@gmail.com','33333','68.798.955/0001-70', '14808-631'),
+    (null, 'Rosalia Floricultura', 'Flávia e Samuel Floricultura Ltda','rosaliafloricultura@gmail.com','44444','20.883.549/0001-89', '17204-562'),
+    (null, 'Fab', 'Fábio e Caio Flores Ltda','fab@gmail.com','55555', '89.563.658/0001-15', '13902-094'),
+    (null, 'Regina flores', 'Regina e Antonella Limpeza Ltda','reginaflores@gmail.com','66666', '97.618.603/0001-93', '13179-384'),
+    (null, 'Nicole', 'Nicole e Nathan Florinda ME','nicole@gmail.com','77777', '42.391.363/0001-45', '09332-030'),
+    (null, 'Dona Florinda', 'Yago e Mariana Flores ME','donaflorinda@gmail.com','88888', '47.984.280/0001-83', '09812-610'),
+    (null, 'Hadassa Festas', 'Hadassa e Larissa Marketing Ltda','hadassafestas@gmail.com','99999', '40.675.601/0001-19', '13432-572'),
+    (null, 'Flores Floridas', 'Adriana Florista Ltda','floresfloridas@gmail.com','00000', '69.219.716/0001-80', '13058-166');
 
 CREATE TABLE Representante (
 idRepresentante INT PRIMARY KEY auto_increment,
