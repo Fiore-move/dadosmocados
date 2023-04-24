@@ -101,26 +101,26 @@ umidade varchar (45)
 );
 
 INSERT INTO statusSENSORS VALUES
-    (1000, '2023-02-01 09:00:00','adequado', '1°C', '71%'), 
-    (1000, '2023-02-01 10:00:00','adequado', '2°C', '73%'), 
-    (1001, '2023-02-02 10:00:00','inadequado', '-3°C', '79%'), 
-    (1001, '2023-02-02 11:00:00','inadequado', '-2°C', '80%'), 
-    (1002, '2023-02-03 11:00:00','adequado', '1°C', '75%'), 
-    (1002, '2023-02-03 12:00:00','inadequado', '-3°C', '75%'), 
-    (1003, '2023-02-04 12:00:00','adequado', '3°C', '73%'), 
-    (1003, '2023-02-04 13:00:00','adequado', '2°C', '71%'), 
-    (1004, '2023-02-05 13:00:00','adequado', '4°C', '73%'), 
-    (1004, '2023-02-05 14:00:00','inadequado', '10°C', '73%'), 
-    (1005, '2023-02-06 14:00:00','inadequado', '10°C', '72%'), 
-    (1005, '2023-02-06 15:00:00','adequado', '4°C', '71%'), 
-    (1006, '2023-02-07 15:00:00','inadequado', '15°C', '80%'), 
-    (1006, '2023-02-07 16:00:00','adequado', '3°C', '71%'), 
-    (1007, '2023-02-08 16:00:00','inadequado', '8°C', '70%'), 
-    (1007, '2023-02-08 17:00:00','adequado', '4°C', '70%'), 
-    (1008, '2023-02-09 17:00:00','adequado', '5°C', '75%'), 
-    (1008, '2023-02-09 18:00:00','adequado', '5°C', '73%'), 
-    (1009, '2023-02-10 19:00:00','adequado', '2°C', '71%'), 
-    (1009, '2023-02-10 20:00:00','inadequado', '-3°C', '60%'); 
+    (1000, '2023-02-01 09:00:00','ideal', '1°C', '71%'), 
+    (1000, '2023-02-01 10:00:00','ideal', '2°C', '73%'), 
+    (1001, '2023-02-02 10:00:00','crítico', '-3°C', '79%'), 
+    (1001, '2023-02-02 11:00:00','crítico', '-2°C', '80%'), 
+    (1002, '2023-02-03 11:00:00','emergência', '1°C', '75%'), 
+    (1002, '2023-02-03 12:00:00','crítico', '-3°C', '75%'), 
+    (1003, '2023-02-04 12:00:00','ideal', '3°C', '73%'), 
+    (1003, '2023-02-04 13:00:00','ideal', '2°C', '71%'), 
+    (1004, '2023-02-05 13:00:00','ideal', '4°C', '73%'), 
+    (1004, '2023-02-05 14:00:00','crítico', '10°C', '73%'), 
+    (1005, '2023-02-06 14:00:00','crítico', '10°C', '72%'), 
+    (1005, '2023-02-06 15:00:00','ideal', '4°C', '71%'), 
+    (1006, '2023-02-07 15:00:00','crítico', '15°C', '80%'), 
+    (1006, '2023-02-07 16:00:00','ideal', '3°C', '71%'), 
+    (1007, '2023-02-08 16:00:00','crítico', '8°C', '70%'), 
+    (1007, '2023-02-08 17:00:00','ideal', '4°C', '70%'), 
+    (1008, '2023-02-09 17:00:00','emergência', '5°C', '75%'), 
+    (1008, '2023-02-09 18:00:00','emergência', '5°C', '73%'), 
+    (1009, '2023-02-10 19:00:00','ideal', '2°C', '71%'), 
+    (1009, '2023-02-10 20:00:00','crítico', '-3°C', '60%'); 
 
 
 SELECT * FROM Empresas;
@@ -135,6 +135,15 @@ SELECT * FROM statusSENSORS;
 
 SELECT * FROM Empresas JOIN Representante
 	ON idEmpresa = fkEmpresas;
+    
+    select * from Empresas join Caminhão on Empresas.idEmpresa = Caminhão.fkEmpresa
+    join sensor on sensor.fkCaminhao = Caminhão.idCaminhao
+    join statusSensors on statusSensors.fkSensor = sensor.idSensor;
+    
+    select * from Empresas join Caminhão on Empresas.idEmpresa = Caminhão.fkEmpresa
+    join sensor on sensor.fkCaminhao = Caminhão.idCaminhao
+    join statusSensors on statusSensors.fkSensor = sensor.idSensor
+    where idEmpresa = 1;
     
 -- Para saber quais os representantes usam nome social
 -- neste exemplo temos o id das empresas seguido o id dos representantes.    
@@ -166,6 +175,8 @@ SELECT Empresas.nomeFant AS Empresa,
 	Representante.nomeRepresent AS Representante
     FROM Empresas JOIN Representante
     ON Representante.fkEmpresas = Empresas.idEmpresa;
+
+	
 
 -- Para saber quais caminhões estão com o ambiente adequado para o transporte de rosas e
 SELECT Caminhão.idCaminhao AS id,
