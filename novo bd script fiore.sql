@@ -1,5 +1,5 @@
 CREATE DATABASE FioreMove;
-
+drop database FioreMove;
 
 USE FioreMove;
 
@@ -144,6 +144,9 @@ Representante.nomeRepresentSoc AS Representante,
 Representante.idRepresentante AS identificador
 	FROM Empresas JOIN Representante
     ON Representante.fkEmpresas = Empresas.idEmpresa;
+    
+    select * from Empresas join Representante
+    on Representante.fkEmpresa = Empresas.idEmpresa;
 
 SELECT Empresas.idEmpresa AS identificador,
 Empresas.nomeFant AS Empresa,
