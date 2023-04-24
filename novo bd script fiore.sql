@@ -26,14 +26,15 @@ INSERT INTO Empresas VALUES
     (null, 'Flores Floridas', 'Adriana Florista Ltda','floresfloridas@gmail.com','00000', '69.219.716/0001-80', '13058-166');
 
 CREATE TABLE Representante (
-idRepresentante INT PRIMARY KEY auto_increment,
+idRepresentante INT auto_increment,
 nomeRepresentSoc VARCHAR(45),
 nomeRepresent VARCHAR (45),
 CPFRepresent VARCHAR (45),
 email VARCHAR (45),
 telefone VARCHAR (45),
 fkEmpresas INT,
-CONSTRAINT fkEmpresas foreign key (fkEmpresas) REFERENCES Empresas(idEmpresa)
+CONSTRAINT fkEmpresas foreign key (fkEmpresas) REFERENCES Empresas(idEmpresa),
+constraint pkcomposta primary key (idRepresentante, fkEmpresas)
 )auto_increment = 10000;
 
 INSERT INTO Representante VALUES
@@ -144,9 +145,22 @@ Representante.idRepresentante AS identificador
 	FROM Empresas JOIN Representante
     ON Representante.fkEmpresas = Empresas.idEmpresa;
 
+SELECT Empresas.idEmpresa AS identificador,
+Empresas.nomeFant AS Empresa,
+Representante.nomeRepresentSoc AS 'Nome Social',
+Representante.nomeRepresent AS Representante,
+Representante.idRepresentante AS identificador
+	FROM Empresas JOIN Representante
+    ON Representante.fkEmpresas = Empresas.idEmpresa;
+
 -- e nesse temos apenas o nome das empresas e o nome dos representantes que usam nome social
 SELECT Empresas.nomeFant AS Empresa, 
 	Representante.nomeRepresentSoc AS Representante
+    FROM Empresas JOIN Representante
+    ON Representante.fkEmpresas = Empresas.idEmpresa;
+    
+    SELECT Empresas.nomeFant AS Empresa, 
+	Representante.nomeRepresent AS Representante
     FROM Empresas JOIN Representante
     ON Representante.fkEmpresas = Empresas.idEmpresa;
 
