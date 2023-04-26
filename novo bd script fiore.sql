@@ -1,3 +1,4 @@
+drop database FioreMove;
 CREATE DATABASE FioreMove;
 drop database FioreMove;
 
@@ -101,30 +102,30 @@ umidade varchar (45)
 );
 
 INSERT INTO statusSENSORS VALUES
-    (1000, '2023-02-01 09:00:00','alerta', '1°C', '71%'), 
-    (1000, '2023-02-01 10:00:00','ideal', '2°C', '73%'), 
+    (1000, '2023-02-01 09:00:00','crítico', '1°C', '71%'), 
+    (1000, '2023-02-01 10:00:00','alerta', '2°C', '73%'), 
     (1001, '2023-02-02 10:00:00','crítico', '-3°C', '79%'), 
     (1001, '2023-02-02 11:00:00','crítico', '-2°C', '80%'), 
-    (1002, '2023-02-03 11:00:00','alerta', '1°C', '75%'), 
+    (1002, '2023-02-03 11:00:00','crítico', '1°C', '75%'), 
     (1002, '2023-02-03 12:00:00','crítico', '-3°C', '75%'), 
     (1003, '2023-02-04 12:00:00','ideal', '3°C', '73%'), 
-    (1003, '2023-02-04 13:00:00','ideal', '2°C', '71%'), 
+    (1003, '2023-02-04 13:00:00','alerta', '2°C', '71%'), 
     (1004, '2023-02-05 13:00:00','ideal', '4°C', '73%'), 
     (1004, '2023-02-05 14:00:00','crítico', '10°C', '73%'), 
     (1005, '2023-02-06 14:00:00','crítico', '10°C', '72%'), 
-    (1005, '2023-02-06 15:00:00','ideal', '4°C', '71%'), 
+    (1005, '2023-02-06 15:00:00','alerta', '4°C', '71%'), 
     (1006, '2023-02-07 15:00:00','crítico', '15°C', '80%'), 
-    (1006, '2023-02-07 16:00:00','ideal', '3°C', '71%'), 
+    (1006, '2023-02-07 16:00:00','alerta', '3°C', '71%'), 
     (1007, '2023-02-08 16:00:00','crítico', '8°C', '70%'), 
-    (1007, '2023-02-08 17:00:00','ideal', '4°C', '70%'), 
-    (1008, '2023-02-09 17:00:00','alerta', '5°C', '75%'), 
-    (1008, '2023-02-09 18:00:00','alerta', '5°C', '73%'), 
+    (1007, '2023-02-08 17:00:00','crítico', '4°C', '70%'), 
+    (1008, '2023-02-09 17:00:00','crítico', '5°C', '75%'), 
+    (1008, '2023-02-09 18:00:00','crítico', '5°C', '73%'), 
     (1009, '2023-01-01 12:00:00','crítico', '30°C', '80%'), 
     (1009, '2023-01-01 13:00:00','crítico', '29°C', '82%'),
     (1009, '2023-01-01 14:00:00','crítico', '28°C', '80%'),
     (1009, '2023-01-01 15:00:00','crítico', '25°C', '85%'),
     (1009, '2023-01-01 16:00:00','crítico', '22°C', '80%'),
-    (1009, '2023-01-01 17:00:00','crítico', '23°C', '83%'),
+    (1009, '2023-01-01 17:00:00','crítico', '23°C', '83%');
 
 
 SELECT * FROM Empresas;
@@ -137,17 +138,38 @@ SELECT * FROM sensor;
 
 SELECT * FROM statusSENSORS;
 
+-- juntar empresa com representante 
 SELECT * FROM Empresas JOIN Representante
 	ON idEmpresa = fkEmpresas;
     
-    select * from Empresas join Caminhão on Empresas.idEmpresa = Caminhão.fkEmpresa
-    join sensor on sensor.fkCaminhao = Caminhão.idCaminhao
-    join statusSensors on statusSensors.fkSensor = sensor.idSensor;
+    -- juntar empresa com caminhão
+    select * from Empresas join Caminhão
+    on idEmpresa = fkEmpresa;
     
-    select * from Empresas join Caminhão on Empresas.idEmpresa = Caminhão.fkEmpresa
-    join sensor on sensor.fkCaminhao = Caminhão.idCaminhao
-    join statusSensors on statusSensors.fkSensor = sensor.idSensor
-    where idEmpresa = 1;
+    -- juntar caminhão ao sensor
+    select * from Caminhão join sensor 
+    on fkCaminhao = idCaminhao;
+    
+    -- juntar sensor ao status do sensor
+    select * from sensor join statusSensors
+    on fkSensor = idSensor;
+    
+    -- juntando todas as tabelas
+    select * from Empresas join Caminhão on
+    Empresas.idEmpresa = Caminhão.fkEmpresa
+    join sensor on
+    sensor.fkCaminhao = Caminhão.idCaminhao
+    join statusSensors on
+    statusSensors.fkSensor = sensor.idSensor;
+    
+    -- juntando todas as tabelas onde o idEmpresa = 10
+    select * from Empresas join Caminhão on
+    Empresas.idEmpresa = Caminhão.fkEmpresa
+    join sensor on
+    sensor.fkCaminhao = Caminhão.idCaminhao
+    join statusSensors on
+    statusSensors.fkSensor = sensor.idSensor
+    where idEmpresa = 10;
     
 -- Para saber quais os representantes usam nome social
 -- neste exemplo temos o id das empresas seguido o id dos representantes.    
