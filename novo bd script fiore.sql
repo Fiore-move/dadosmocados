@@ -1,6 +1,6 @@
 drop database FioreMove;
+
 CREATE DATABASE FioreMove;
-drop database FioreMove;
 
 USE FioreMove;
 
@@ -79,7 +79,7 @@ fkCaminhao INT,
 CONSTRAINT fkCaminhao foreign key (fkCaminhao) REFERENCES Caminhão(idCaminhao)
 )auto_increment = 1000;
 
-INSERT INTO Sensor VALUES
+INSERT INTO sensor VALUES
 	(null, 'Saravati','DHT11',10),
     (null, 'Saravati','DHT11',11),
     (null, 'Saravati','DHT11',12),
@@ -96,36 +96,35 @@ CREATE TABLE statusSENSORS (
 fkSensor int, constraint fkSensorStatus foreign key (fkSensor) references sensor(idSensor),
  constraint pkcomposta primary key (dtHoraStatus,fkSensor),
 dtHoraStatus datetime,
-statusSensor varchar (45),
-temperatura varchar (45),
-umidade varchar (45)
+temperatura int,
+umidade int
 );
 
 INSERT INTO statusSENSORS VALUES
-    (1000, '2023-02-01 09:00:00','crítico', '1°C', '71%'), 
-    (1000, '2023-02-01 10:00:00','alerta', '2°C', '73%'), 
-    (1001, '2023-02-02 10:00:00','crítico', '-3°C', '79%'), 
-    (1001, '2023-02-02 11:00:00','crítico', '-2°C', '80%'), 
-    (1002, '2023-02-03 11:00:00','crítico', '1°C', '75%'), 
-    (1002, '2023-02-03 12:00:00','crítico', '-3°C', '75%'), 
-    (1003, '2023-02-04 12:00:00','ideal', '3°C', '73%'), 
-    (1003, '2023-02-04 13:00:00','alerta', '2°C', '71%'), 
-    (1004, '2023-02-05 13:00:00','ideal', '4°C', '73%'), 
-    (1004, '2023-02-05 14:00:00','crítico', '10°C', '73%'), 
-    (1005, '2023-02-06 14:00:00','crítico', '10°C', '72%'), 
-    (1005, '2023-02-06 15:00:00','alerta', '4°C', '71%'), 
-    (1006, '2023-02-07 15:00:00','crítico', '15°C', '80%'), 
-    (1006, '2023-02-07 16:00:00','alerta', '3°C', '71%'), 
-    (1007, '2023-02-08 16:00:00','crítico', '8°C', '70%'), 
-    (1007, '2023-02-08 17:00:00','crítico', '4°C', '70%'), 
-    (1008, '2023-02-09 17:00:00','crítico', '5°C', '75%'), 
-    (1008, '2023-02-09 18:00:00','crítico', '5°C', '73%'), 
-    (1009, '2023-01-01 12:00:00','crítico', '30°C', '80%'), 
-    (1009, '2023-01-01 13:00:00','crítico', '29°C', '82%'),
-    (1009, '2023-01-01 14:00:00','crítico', '28°C', '80%'),
-    (1009, '2023-01-01 15:00:00','crítico', '25°C', '85%'),
-    (1009, '2023-01-01 16:00:00','crítico', '22°C', '80%'),
-    (1009, '2023-01-01 17:00:00','crítico', '23°C', '83%');
+    (1000, '2023-02-01 09:00:00',1, 71), 
+    (1000, '2023-02-01 10:00:00',2, 73), 
+    (1001, '2023-02-02 10:00:00',-3, 79), 
+    (1001, '2023-02-02 11:00:00',-2, 80), 
+    (1002, '2023-02-03 11:00:00',1, 75), 
+    (1002, '2023-02-03 12:00:00',-3, 75), 
+    (1003, '2023-02-04 12:00:00',3, 73), 
+    (1003, '2023-02-04 13:00:00',2, 71), 
+    (1004, '2023-02-05 13:00:00',4, 73), 
+    (1004, '2023-02-05 14:00:00',10, 73), 
+    (1005, '2023-02-06 14:00:00',10, 72), 
+    (1005, '2023-02-06 15:00:00',4, 71), 
+    (1006, '2023-02-07 15:00:00',15, 80), 
+    (1006, '2023-02-07 16:00:00',3, 71), 
+    (1007, '2023-02-08 16:00:00',8, 70), 
+    (1007, '2023-02-08 17:00:00',4, 70), 
+    (1008, '2023-02-09 17:00:00',5, 75), 
+    (1008, '2023-02-09 18:00:00',5, 73), 
+    (1009, '2023-01-01 12:00:00',30, 80), 
+    (1009, '2023-01-01 13:00:00',29, 82),
+    (1009, '2023-01-01 14:00:00',28, 80),
+    (1009, '2023-01-01 15:00:00',25, 85),
+    (1009, '2023-01-01 16:00:00',22, 80),
+    (1009, '2023-01-01 17:00:00',23, 83);
 
 
 SELECT * FROM Empresas;
@@ -151,7 +150,7 @@ SELECT * FROM Empresas JOIN Representante
     on fkCaminhao = idCaminhao;
     
     -- juntar sensor ao status do sensor
-    select * from sensor join statusSensors
+    select * from sensor join statusSENSORS
     on fkSensor = idSensor;
     
     -- juntando todas as tabelas
@@ -159,8 +158,8 @@ SELECT * FROM Empresas JOIN Representante
     Empresas.idEmpresa = Caminhão.fkEmpresa
     join sensor on
     sensor.fkCaminhao = Caminhão.idCaminhao
-    join statusSensors on
-    statusSensors.fkSensor = sensor.idSensor;
+    join statusSENSORS on
+    statusSENSORS.fkSensor = sensor.idSensor;
     
     -- juntando todas as tabelas onde o idEmpresa = 10
     select * from Empresas join Caminhão on
@@ -168,7 +167,7 @@ SELECT * FROM Empresas JOIN Representante
     join sensor on
     sensor.fkCaminhao = Caminhão.idCaminhao
     join statusSensors on
-    statusSensors.fkSensor = sensor.idSensor
+    statusSENSORS.fkSensor = sensor.idSensor
     where idEmpresa = 10;
     
 -- Para saber quais os representantes usam nome social
@@ -208,18 +207,17 @@ SELECT Empresas.nomeFant AS Empresa,
 SELECT Caminhão.idCaminhao AS id,
 	Caminhão.placa AS Placa,
 	sensor.idSensor AS Sensor,
-    statusSENSORS.statusSensor AS Condição,
     statusSENSORS.temperatura AS TempEmCelsius,
     statusSENSORS.umidade AS UmidadEmPorcentagem
     FROM Caminhão INNER JOIN sensor
     ON sensor.fkCaminhao = Caminhão.idCaminhao
-		INNER JOIN statusSENSORS ON statusSENSORS.fkSensor = Sensor.idSensor;
+		 JOIN statusSENSORS ON statusSENSORS.fkSensor = sensor.idSensor;
    
 -- Para saber quais sensores estão instalados em um determinado caminhão.
-SELECT Sensor.idSensor AS identificador,
+SELECT sensor.idSensor AS identificador,
 	Caminhão.idCaminhao AS idCaminhão,
     Caminhão.placa AS Caminhão
-    FROM Sensor JOIN Caminhão
+    FROM sensor JOIN Caminhão
 		ON sensor.fkCaminhao = Caminhão.idCaminhao;
         
 -- Mudamos uma nomenclatura dentro da tabela.
