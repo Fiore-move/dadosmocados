@@ -4,221 +4,64 @@ CREATE DATABASE FioreMove;
 
 USE FioreMove;
 
-CREATE TABLE Empresas (
+CREATE TABLE empresa (
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeFant VARCHAR (45),
 nomeEmpresa VARCHAR (45),
 email VARCHAR (45),	
 senha varchar(45),
 CPNJ VARCHAR (45),
-CEP VARCHAR (45)
+CEP VARCHAR (45),
+nomeRepresent VARCHAR(45),
+CPFRepresent CHAR (11)
 ) auto_increment = 1;
 
-INSERT INTO Empresas VALUES
-	(null, 'Rita e Jaq', 'Rita e Jaqueline Flores Delivery Ltda','ritaejaq@gmail.com','11111', '57.555.243/0001-03', '02256-060'),
-    (null, 'Sophies', 'Sophia e Felipe Eletrônica Ltda','sophies@gmail.com','22222','75.227.231/0001-31', '04039-010'),
-    (null, 'Caio Flores', 'Caio e Raul Corretores Associados ME','caioflores@gmail.com','33333','68.798.955/0001-70', '14808-631'),
-    (null, 'Rosalia Floricultura', 'Flávia e Samuel Floricultura Ltda','rosaliafloricultura@gmail.com','44444','20.883.549/0001-89', '17204-562'),
-    (null, 'Fab', 'Fábio e Caio Flores Ltda','fab@gmail.com','55555', '89.563.658/0001-15', '13902-094'),
-    (null, 'Regina flores', 'Regina e Antonella Limpeza Ltda','reginaflores@gmail.com','66666', '97.618.603/0001-93', '13179-384'),
-    (null, 'Nicole', 'Nicole e Nathan Florinda ME','nicole@gmail.com','77777', '42.391.363/0001-45', '09332-030'),
-    (null, 'Dona Florinda', 'Yago e Mariana Flores ME','donaflorinda@gmail.com','88888', '47.984.280/0001-83', '09812-610'),
-    (null, 'Hadassa Festas', 'Hadassa e Larissa Marketing Ltda','hadassafestas@gmail.com','99999', '40.675.601/0001-19', '13432-572'),
-    (null, 'Flores Floridas', 'Adriana Florista Ltda','floresfloridas@gmail.com','00000', '69.219.716/0001-80', '13058-166');
+INSERT INTO empresa VALUES
+	(null, 'Rita e Jaq', 'Rita e Jaqueline Flores Delivery Ltda','ritaejaq@gmail.com','11111', '57.555.243/0001-03', '02256-060', 'Jaqueline Ferreira','39218420003'),
+    (null, 'Sophies', 'Sophia e Felipe Eletrônica Ltda','sophies@gmail.com','22222','75.227.231/0001-31', '04039-010','Joseph Cabral','43674504065'),
+    (null, 'Caio Flores', 'Caio e Raul Corretores Associados ME','caioflores@gmail.com','33333','68.798.955/0001-70', '14808-631', 'Carlo Bianchi', '68745048274'),
+    (null, 'Rosalia Floricultura', 'Flávia e Samuel Floricultura Ltda','rosaliafloricultura@gmail.com','44444','20.883.549/0001-89', '17204-562', 'Giusepi Pierro', '91688866086'),
+    (null, 'Fab', 'Fábio e Caio Flores Ltda','fab@gmail.com','55555', '89.563.658/0001-15', '13902-094', 'Sofia Giacommo', '85410261089'),
+    (null, 'Regina flores', 'Regina e Antonella Limpeza Ltda','reginaflores@gmail.com','66666', '97.618.603/0001-93', '13179-384', 'Lou Mendes', '76462919000'),
+    (null, 'Nicole', 'Nicole e Nathan Florinda ME','nicole@gmail.com','77777', '42.391.363/0001-45', '09332-030', 'Diana Deroma', '55135078037'),
+    (null, 'Dona Florinda', 'Yago e Mariana Flores ME','donaflorinda@gmail.com','88888', '47.984.280/0001-83', '09812-610', 'Dominique Lincon', '82885230053'),
+    (null, 'Hadassa Festas', 'Hadassa e Larissa Marketing Ltda','hadassafestas@gmail.com','99999', '40.675.601/0001-19', '13432-572', 'Alexandre Centeio', '27868704020'),
+    (null, 'Flores Floridas', 'Adriana Florista Ltda','floresfloridas@gmail.com','00000', '69.219.716/0001-80', '13058-166', 'Lilian Nara', '61774281007');
 
-CREATE TABLE Representante (
-idRepresentante INT auto_increment,
-nomeRepresentSoc VARCHAR(45),
-nomeRepresent VARCHAR (45),
-CPFRepresent VARCHAR (45),
-email VARCHAR (45),
-telefone VARCHAR (45),
-fkEmpresas INT,
-CONSTRAINT fkEmpresas foreign key (fkEmpresas) REFERENCES Empresas(idEmpresa),
-constraint pkcomposta primary key (idRepresentante, fkEmpresas)
-)auto_increment = 10000;
 
-INSERT INTO Representante VALUES
-		(null, null, 'Jaqueline Ferreira', '392.184.200-03','jaquelinef@ritaejaqmail.com', '(67) 3974-0562', 1),
-        (null, 'Leila Cabral', 'Joseph Cabral', '436.745.040-65', 'leila.cabral@sophiesmail.com', '(95) 99804-0741', 2),
-        (null, null, 'Carlo Bianchi', '687.450.482-74', 'cbianchi@floresmail.com', '(95) 2893-9814', 3),
-        (null, null, 'Giusepi Pierro', '916.888.660-86', 'pierro.giusepi@gmail.com','(67) 3974-0562',4),
-        (null, 'Guilherme Giacommo', 'Sofia Giacommo', '854.102.610-89', 'guilhermegiac@outlook.com', '(86) 3666-7887', 5),
-        (null, null, 'Lou Mendes', '764.629.190-00', 'mendes.lou@floresmail.com', '(55) 99370-2797', 6),
-        (null, null, 'Diana Deroma', '551.350.780-37', 'diana_demora@florindmail.com', '(82) 2865-2324', 7),
-        (null, null, 'Dominique Lincon', '828.852.300-53', 'domick12@gmail.com', '(82) 2865-2324', 8),
-        (null, 'Alexsandro Centeio', 'Alexandre Centeio', '278.687.040-20', 'centeio_clementine@outlook.com', '(86) 99871-0666', 9),
-        (null, null, 'Lilian Nara', '617.742.810-07', 'liliann@floridasmail.com', '(86) 3666-7887', 10);
-
-CREATE TABLE Caminhão (
-idCaminhao INT PRIMARY KEY auto_increment,
-placa VARCHAR (45),
-modelo VARCHAR (45),
-fkEmpresa INT,
-CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresas(idEmpresa)
-) auto_increment = 10;
-
-INSERT INTO Caminhão VALUES
-	(null, 'AAA-1111', 'Volvo', 1),
-    (null, 'BBB-2222', 'Mercedes', 2),
-    (null, 'CCC-3333', 'Volvo', 3),
-    (null, 'DDD-4444', 'Mercedes', 4),
-    (null, 'EEE-5555', 'Volvo', 5),
-    (null, 'FFF-6666', 'Mercedes', 6),
-    (null, 'GGG-7777', 'Volvo', 7),
-    (null, 'HHH-8888', 'Mercedes', 8),
-    (null, 'III-9999', 'Volvo', 9),
-    (null, 'JJJ-1010', 'Mercedes', 10);
 
 
 CREATE TABLE sensor (
 idSensor INT PRIMARY KEY auto_increment,
-marcar VARCHAR (45),
 tipoSensor VARCHAR (45),
-fkCaminhao INT,
-CONSTRAINT fkCaminhao foreign key (fkCaminhao) REFERENCES Caminhão(idCaminhao)
-)auto_increment = 1000;
+fkEmpresa INT, CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
+umidade char(3),
+temperatura char(3),
+dtHora datetime
+)auto_increment = 1;
 
 INSERT INTO sensor VALUES
-	(null, 'Saravati','DHT11',10),
-    (null, 'Saravati','DHT11',11),
-    (null, 'Saravati','DHT11',12),
-	(null, 'Saravati','DHT11',13),
-    (null, 'Saravati','DHT11',14),
-    (null, 'Saravati','DHT11',15),
-    (null, 'Saravati','DHT11',16),
-    (null, 'Saravati','DHT11',17),
-    (null, 'Saravati','DHT11',18),
-    (null, 'Saravati','DHT11',19);
+	(null,'DHT11',1,1, 71,'2023-02-01 09:00:00'),
+    (null,'DHT11',2,2, 73, '2023-02-02 10:00:00'),
+    (null,'DHT11',3,-3, 79, '2023-02-03 11:00:00'),
+	(null,'DHT11',4,-2, 80, '2023-02-04 12:00:00'),
+    (null,'DHT11',5,1, 75, '2023-02-05 13:00:00'),
+    (null,'DHT11',6,-3, 75, '2023-02-06 14:00:00'),
+    (null,'DHT11',7,3, 73, '2023-02-07 15:00:00'),
+    (null,'DHT11',8,2, 71, '2023-02-08 16:00:00'),
+    (null,'DHT11',9,8, 70, '2023-02-09 17:00:00'),
+    (null,'DHT11',10,5, 75, '2023-01-01 12:00:00'),
+    (null,'DHT11',10,29, 82, '2023-01-01 13:00:00'),
+    (null,'DHT11',10,28, 80, '2023-01-01 14:00:00'),
+    (null,'DHT11',10,25, 85, '2023-01-01 15:00:00'),
+    (null,'DHT11',10,22, 80, '2023-01-01 16:00:00');
 
 
-CREATE TABLE statusSENSORS (
-fkSensor int, constraint fkSensorStatus foreign key (fkSensor) references sensor(idSensor),
- constraint pkcomposta primary key (dtHoraStatus,fkSensor),
-dtHoraStatus datetime,
-temperatura int,
-umidade int
-);
-
-INSERT INTO statusSENSORS VALUES
-    (1000, '2023-02-01 09:00:00',1, 71), 
-    (1000, '2023-02-01 10:00:00',2, 73), 
-    (1001, '2023-02-02 10:00:00',-3, 79), 
-    (1001, '2023-02-02 11:00:00',-2, 80), 
-    (1002, '2023-02-03 11:00:00',1, 75), 
-    (1002, '2023-02-03 12:00:00',-3, 75), 
-    (1003, '2023-02-04 12:00:00',3, 73), 
-    (1003, '2023-02-04 13:00:00',2, 71), 
-    (1004, '2023-02-05 13:00:00',4, 73), 
-    (1004, '2023-02-05 14:00:00',10, 73), 
-    (1005, '2023-02-06 14:00:00',10, 72), 
-    (1005, '2023-02-06 15:00:00',4, 71), 
-    (1006, '2023-02-07 15:00:00',15, 80), 
-    (1006, '2023-02-07 16:00:00',3, 71), 
-    (1007, '2023-02-08 16:00:00',8, 70), 
-    (1007, '2023-02-08 17:00:00',4, 70), 
-    (1008, '2023-02-09 17:00:00',5, 75), 
-    (1008, '2023-02-09 18:00:00',5, 73), 
-    (1009, '2023-01-01 12:00:00',30, 80), 
-    (1009, '2023-01-01 13:00:00',29, 82),
-    (1009, '2023-01-01 14:00:00',28, 80),
-    (1009, '2023-01-01 15:00:00',25, 85),
-    (1009, '2023-01-01 16:00:00',22, 80),
-    (1009, '2023-01-01 17:00:00',23, 83);
-
-
-SELECT * FROM Empresas;
-
-SELECT * FROM Representante;
-
-SELECT * FROM Caminhão;
+SELECT * FROM empresa;
 
 SELECT * FROM sensor;
 
-SELECT * FROM statusSENSORS;
+select * from empresa join sensor on
+idEmpresa = fkEmpresa;
 
--- juntar empresa com representante 
-SELECT * FROM Empresas JOIN Representante
-	ON idEmpresa = fkEmpresas;
-    
-    -- juntar empresa com caminhão
-    select * from Empresas join Caminhão
-    on idEmpresa = fkEmpresa;
-    
-    -- juntar caminhão ao sensor
-    select * from Caminhão join sensor 
-    on fkCaminhao = idCaminhao;
-    
-    -- juntar sensor ao status do sensor
-    select * from sensor join statusSENSORS
-    on fkSensor = idSensor;
-    
-    -- juntando todas as tabelas
-    select * from Empresas join Caminhão on
-    Empresas.idEmpresa = Caminhão.fkEmpresa
-    join sensor on
-    sensor.fkCaminhao = Caminhão.idCaminhao
-    join statusSENSORS on
-    statusSENSORS.fkSensor = sensor.idSensor;
-    
-    -- juntando todas as tabelas onde o idEmpresa = 10
-    select * from Empresas join Caminhão on
-    Empresas.idEmpresa = Caminhão.fkEmpresa
-    join sensor on
-    sensor.fkCaminhao = Caminhão.idCaminhao
-    join statusSensors on
-    statusSENSORS.fkSensor = sensor.idSensor
-    where idEmpresa = 10;
-    
--- Para saber quais os representantes usam nome social
--- neste exemplo temos o id das empresas seguido o id dos representantes.    
-SELECT Empresas.idEmpresa AS identificador,
-Empresas.nomeFant AS Empresa,
-Representante.nomeRepresentSoc AS Representante,
-Representante.idRepresentante AS identificador
-	FROM Empresas JOIN Representante
-    ON Representante.fkEmpresas = Empresas.idEmpresa;
-    
-    select * from Empresas join Representante
-    on Representante.fkEmpresa = Empresas.idEmpresa;
 
-SELECT Empresas.idEmpresa AS identificador,
-Empresas.nomeFant AS Empresa,
-Representante.nomeRepresentSoc AS 'Nome Social',
-Representante.nomeRepresent AS Representante,
-Representante.idRepresentante AS identificador
-	FROM Empresas JOIN Representante
-    ON Representante.fkEmpresas = Empresas.idEmpresa;
-
--- e nesse temos apenas o nome das empresas e o nome dos representantes que usam nome social
-SELECT Empresas.nomeFant AS Empresa, 
-	Representante.nomeRepresentSoc AS Representante
-    FROM Empresas JOIN Representante
-    ON Representante.fkEmpresas = Empresas.idEmpresa;
-    
-    SELECT Empresas.nomeFant AS Empresa, 
-	Representante.nomeRepresent AS Representante
-    FROM Empresas JOIN Representante
-    ON Representante.fkEmpresas = Empresas.idEmpresa;
-
-	
-
--- Para saber quais caminhões estão com o ambiente adequado para o transporte de rosas e
-SELECT Caminhão.idCaminhao AS id,
-	Caminhão.placa AS Placa,
-	sensor.idSensor AS Sensor,
-    statusSENSORS.temperatura AS TempEmCelsius,
-    statusSENSORS.umidade AS UmidadEmPorcentagem
-    FROM Caminhão INNER JOIN sensor
-    ON sensor.fkCaminhao = Caminhão.idCaminhao
-		 JOIN statusSENSORS ON statusSENSORS.fkSensor = sensor.idSensor;
-   
--- Para saber quais sensores estão instalados em um determinado caminhão.
-SELECT sensor.idSensor AS identificador,
-	Caminhão.idCaminhao AS idCaminhão,
-    Caminhão.placa AS Caminhão
-    FROM sensor JOIN Caminhão
-		ON sensor.fkCaminhao = Caminhão.idCaminhao;
-        
--- Mudamos uma nomenclatura dentro da tabela.
-ALTER TABLE Representante RENAME COLUMN nomeRepresent TO nomeRepresentRegistro;
