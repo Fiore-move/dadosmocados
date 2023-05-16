@@ -13,7 +13,7 @@ senha varchar(45),
 CPNJ VARCHAR (45),
 CEP VARCHAR (45),
 nomeRepresent VARCHAR(45),
-CPFRepresent CHAR (11)
+cpfRepresent CHAR (11)
 ) auto_increment = 1;
 
 INSERT INTO empresa VALUES
@@ -33,28 +33,26 @@ INSERT INTO empresa VALUES
 
 CREATE TABLE sensor (
 idSensor INT PRIMARY KEY auto_increment,
-tipoSensor VARCHAR (45),
 fkEmpresa INT, CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
-umidade char(3),
-temperatura char(3),
-dtHora datetime
+umidade float,
+temperatura float
 )auto_increment = 1;
 
 INSERT INTO sensor VALUES
-	(null,'DHT11',1,1, 71,'2023-02-01 09:00:00'),
-    (null,'DHT11',2,2, 73, '2023-02-02 10:00:00'),
-    (null,'DHT11',3,-3, 79, '2023-02-03 11:00:00'),
-	(null,'DHT11',4,-2, 80, '2023-02-04 12:00:00'),
-    (null,'DHT11',5,1, 75, '2023-02-05 13:00:00'),
-    (null,'DHT11',6,-3, 75, '2023-02-06 14:00:00'),
-    (null,'DHT11',7,3, 73, '2023-02-07 15:00:00'),
-    (null,'DHT11',8,2, 71, '2023-02-08 16:00:00'),
-    (null,'DHT11',9,8, 70, '2023-02-09 17:00:00'),
-    (null,'DHT11',10,5, 75, '2023-01-01 12:00:00'),
-    (null,'DHT11',10,29, 82, '2023-01-01 13:00:00'),
-    (null,'DHT11',10,28, 80, '2023-01-01 14:00:00'),
-    (null,'DHT11',10,25, 85, '2023-01-01 15:00:00'),
-    (null,'DHT11',10,22, 80, '2023-01-01 16:00:00');
+	(null,1,15271.12, 71823.32),
+    (null,2,22332.12, 73321.13),
+    (null,3,33821.32, 79123.23),
+	(null,4,28122.43, 80822.42),
+    (null,5,11223.43, 75773.32),
+    (null,6,37232.32, 75432.21),
+    (null,7,37381.44, 73314.32),
+    (null,8,21311.31, 71311.32),
+    (null,9,86222.12, 70731.12),
+    (null,10,51231.13, 75312.12),
+    (null,10,29521.34, 82631.32),
+    (null,10,28931.13, 80913.12),
+    (null,10,25321.34, 85322.23),
+    (null,10,22331.32, 80123.23);
 
 
 SELECT * FROM empresa;
