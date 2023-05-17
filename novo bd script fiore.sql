@@ -7,13 +7,13 @@ USE FioreMove;
 CREATE TABLE empresa (
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeFant VARCHAR (45),
-nomeEmpresa VARCHAR (45),
+nome VARCHAR (45),
 email VARCHAR (45),	
 senha varchar(45),
-CPNJ VARCHAR (45),
-CEP VARCHAR (45),
-nomeRepresent VARCHAR(45),
-cpfRepresent CHAR (11)
+cnpj VARCHAR (45),
+cep VARCHAR (45),
+represent VARCHAR(45),
+cpf CHAR (23)
 ) auto_increment = 1;
 
 INSERT INTO empresa VALUES
