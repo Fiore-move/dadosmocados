@@ -1,4 +1,4 @@
-drop database FioreMove;
+-- drop database FioreMove;
 
 CREATE DATABASE FioreMove;
 
@@ -35,24 +35,25 @@ CREATE TABLE sensor (
 idSensor INT PRIMARY KEY auto_increment,
 fkEmpresa INT, CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
 umidade double,
-temperatura double
+temperatura double,
+dtHora datetime
 )auto_increment = 1;
 
 INSERT INTO sensor VALUES
-	(null,1,15271.12, 71823.32),
-    (null,2,22332.12, 73321.13),
-    (null,3,33821.32, 79123.23),
-	(null,4,28122.43, 80822.42),
-    (null,5,11223.43, 75773.32),
-    (null,6,37232.32, 75432.21),
-    (null,7,37381.44, 73314.32),
-    (null,8,21311.31, 71311.32),
-    (null,9,86222.12, 70731.12),
-    (null,10,51231.13, 75312.12),
-    (null,10,29521.34, 82631.32),
-    (null,10,28931.13, 80913.12),
-    (null,10,25321.34, 85322.23),
-    (null,10,22331.32, 80123.23);
+	(null,1,15271.12, 71823.32,null),
+    (null,2,22332.12, 73321.13,null),
+    (null,3,33821.32, 79123.23,null),
+	(null,4,28122.43, 80822.42, null),
+    (null,5,11223.43, 75773.32,null),
+    (null,6,37232.32, 75432.21, null),
+    (null,7,37381.44, 73314.32,null),
+    (null,8,21311.31, 71311.32,null),
+    (null,9,86222.12, 70731.12,null),
+    (null,10,51231.13, 75312.12,null),
+    (null,10,29521.34, 82631.32,null),
+    (null,10,28931.13, 80913.12,null),
+    (null,10,25321.34, 85322.23,null),
+    (null,10,22331.32, 80123.23,null);
 
 
 SELECT * FROM empresa;
