@@ -34,8 +34,8 @@ INSERT INTO empresa VALUES
 CREATE TABLE sensor (
 idSensor INT PRIMARY KEY auto_increment,
 fkEmpresa INT, CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
-umidade float,
-temperatura float
+umidade double,
+temperatura double
 )auto_increment = 1;
 
 INSERT INTO sensor VALUES
