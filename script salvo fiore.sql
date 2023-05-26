@@ -33,7 +33,7 @@ INSERT INTO empresa VALUES
 
 CREATE TABLE sensor (
 idSensor INT PRIMARY KEY auto_increment,
-fkEmpresa INT, CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
+fkEmpresa INT, CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES empresa(idEmpresa),
 umidade double,
 temperatura double,
 dtHora datetime
@@ -66,10 +66,10 @@ select * from empresa join sensor on
 idEmpresa = fkEmpresa;
 
 select 
-                    temperatura, 
-                    umidade,
-                    dtHora, 
-                    fkEmpresa 
-                    from sensor where fkEmpresa = 10
-                    order by idSensor desc limit 1;
+temperatura, 
+umidade,
+dtHora, 
+fkEmpresa 
+from sensor where fkEmpresa = 10
+order by idSensor desc limit 1;
 
