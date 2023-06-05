@@ -51,10 +51,24 @@ INSERT INTO sensor VALUES
     (null,9,26, 15,now()),
     (null,10,11, 32,now());
     
+create table compra(
+idCompra int auto_increment,
+sensor_idSensor int,
+empresa_idEmpresa int,
+preco double,
+dtCompra date, constraint sensorIdSensor foreign key (sensor_idSensor) references sensor(IdSensor),
+				constraint empresaIdEmpresa foreign key (empresa_idEmpresa) references empresa(IdEmpresa),
+                constraint pkComposta primary key (idCompra, sensor_idSensor, empresa_idEmpresa)
+);
+
+insert into compra(sensor_idSensor, empresa_idEmpresa, preco, dtCompra) values
+(10,10, 50.00, '2017-05-01');
 
 SELECT * FROM empresa;
 
 SELECT * FROM sensor;
+
+SELECT * FROM compra;
 
 select  temperatura, umidade, dtHora from sensor where fkEmpresa = 10 order by idSensor desc limit 7;
 
